@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="desafio2.css">
+</head>
+<body>
+    <header><h1>Filmes</h1></header>
+    
+    <div class="imagens">
+        <img src="https://cinema10.com.br/upload/noticias/2019-2/4144d07d8f.jpeg" alt="">
+    <img src="https://capricho.abril.com.br/wp-content/uploads/2019/03/vingadores-ultimato-poster.jpg?quality=85&strip=info&w=700&h=720&crop=1" alt="">
+    <img src="https://br.web.img2.acsta.net/pictures/23/01/10/16/05/4289829.jpg" alt="">
+    <img src="https://upload.wikimedia.org/wikipedia/pt/6/63/Black_Adam_poster.jpg" alt="">
+    </div>
+    <div class="conteudo">
+        <div class="escolhas">
+            <div>
+                <h2>Escolha um filme</h2>
+                <label for="filmes"></label>
+                <select id="filmes">
+                    <option value="0">Selecione</option>
+                    <option value="1">Superman</option>
+                    <option value="2">Vingadores</option>
+                    <option value="3">Homem formiga</option>
+                    <option value="4">Adão Negro</option>
+                </select>
+            </div>
+            <div>
+                <h2>Escolha uma nota de 1 a 10</h2>
+                <label for="nota"></label>
+                <input type="number" id="nota" min="0" max="10" required>
+                <button type="button" onclick="darNota()">Enviar</button>
+
+                <h2>Média das notas</h2>
+                <label for="filmes-media">Escolha um filme:</label>
+                <select id="filmes-media">
+                    <option value="0">Selecione</option>
+                    <option value="1">Superman</option>
+                    <option value="2">Vingadores</option>
+                    <option value="3">Homem formiga</option>
+                    <option value="4">Adão Negro</option>
+                    
+                </select>
+                <button type="button" onclick="calcularMedia()">Gerar média do filme</button>
+            </div>
+            <p id="resultado"></p>
+           
+        </div>
+    </div>
+    
+  
+  
+   
+   
+
+    <script>
+      let filmes = ["Superman","Vingadores","Homem formiga","Adão Negro"];
+      let notas=[[],[],[],[]];
+      
+    function darNota() {
+        //let nota1 = document.getElementById("nota").value;
+        let filme = document.getElementById("filmes").value;
+        //notas.push({filme: filme1, nota: nota1,});
+        
+        if(filme >= 1 && filme <= 4){
+            let nota = parseFloat(document.getElementById('nota').value);
+
+
+         if(nota >=0 && nota <= 10){
+            notas[filme - 1].push(nota);
+            
+            alert("O filme " + filmes[filme - 1] + " recebeu a nota " + nota);
+
+            document.getElementById('filmes').value = 0;
+            document.getElementById('nota').value = '';
+
+         }
+         else{
+            alert("Nota inexistente");
+         }
+        }
+        else{
+            alert("Escolha um filme válido");
+        }
+        
+    
+    
+   
+    }
+
+    function calcularMedia(){
+        let filme = document.getElementById('filmes-media').value;
+
+        if (filme >= 1 && filme <= 4) {
+        let notasFilme = notas[filme-1];
+     
+      if (notasFilme.length > 0) {
+      
+      let soma = 0;
+      for (let i = 0; i < notasFilme.length; i++) {
+        soma += notasFilme[i];
+      }
+      let media = soma / notasFilme.length;
+
+      let resultado = document.getElementById("resultado");
+   
+            resultado.innerHTML = `<br>A média das notas para o filme ${filmes[filme-1]} é ${media.toFixed(1)}`;
+           
+    } else {
+      alert("Não há notas para este filme ainda!");
+    }
+  } 
+  else {
+    alert("Escolha um filme válido!");
+  }
+        
+    }
+
+    
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

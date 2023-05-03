@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="desafio3.css">
+</head>
+<body>
+    <div class="conteudo">
+        <nav class="navbar navbar-light bg-light">
+            <form class="form-inline">
+              <button class="btn btn-outline-success" type="button" onclick="adicionarProdutoAoCarrinho('camiseta', 1)">Adicionar camiseta</button>
+              <button class="btn btn-sm btn-outline-secondary" type="button" onclick="adicionarProdutoAoCarrinho('calça', 1)">Adicionar calça</button>
+              <button class="btn btn-outline-success" type="button" onclick="adicionarProdutoAoCarrinho('sapato', 1)">Adicionar sapato</button>
+              <button class="btn btn-sm btn-outline-secondary" type="button" onclick="adicionarProdutoAoCarrinho('jaqueta', 1)">Adicionar jaqueta</button>
+              <button class="btn btn-sm btn-outline-secondary" type="button" onclick="adicionarProdutoAoCarrinho('boné', 1)">Adicionar boné</button>
+              <button onclick="calcularValorTotalCarrinho()">carrinho</button>
+            </form>
+          </nav>
+    </div>
+   
+    <script>
+        const produtosDisponiveis = ["camiseta", "calça", "sapato","jaqueta","boné"];
+        const precos = [70.00, 80.00, 120.00, 200.00, 55.00];
+        
+        let quantidades = [0,0,0,0,0,];
+
+        function adicionarProdutoAoCarrinho(produto, quantidade){
+            const index = produtosDisponiveis.indexOf(produto);
+            if(index !== -1){
+                quantidades[index] += quantidade;
+                alert(`Seu produto ${produto} foi adicionado ao carrinho com sucesso !`);
+
+            }
+            else{
+                alert(`produto ${produto} não encontrado`); 
+            }
+        }
+        function calcularValorTotalCarrinho(){
+            let valorTotal = 0;
+           
+           // console.log(quantidades);
+            for(let i = 0; i < produtosDisponiveis.length; i++){
+                valorTotal += quantidades[i] * precos[i];
+                console.log(valorTotal);
+            }
+         
+            alert(`O valor total do carrinho é R$${valorTotal.toFixed(2)}.`);
+           // return valorTotal;
+          
+            
+        }
+        //alert (precos + quantidades)  
+       //T adicionarProdutoAoCarrinho("camiseta", 1);
+    //const valorTotal = calcularValorTotalCarrinho();
+   // alert(`O valor total do carrinho é R$${valorTotal.toFixed(2)}.`);
+
+
+
+
+
+    </script>
+</body>
+</html>
